@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    <title>ELIMINAR</title>
+{% endblock title %}
+
+{% block content %}
+    <form action="" method="POST">
+        {% csrf_token %}
+
+        <br><br>
+        <div class="alert alert-danger" role="alert">
+            Seguro que quieres eliminar a "{{ employee.emp_name }}"?
+        </div>
+        
+        <p>
+            
+            <a href="{% url 'employees-list' %}"> <button  type="button" class="btn btn-primary" ">ATRAS</button> </a>
+        </p>
+
+        <p>
+            <input class="btn btn-danger" type="submit" value="Confirmar">
+        </p>
+    </form>
+{% endblock content %}

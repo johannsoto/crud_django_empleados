@@ -1,0 +1,54 @@
+
+{% extends 'base.html' %}
+
+{% block title %}
+
+    <title>LISTA DE EMPLEADOS</title>
+    
+    
+ 
+    
+{% endblock title %}
+
+{% block content %}
+
+
+    <h1 class="title" style="text-align: center; padding-top: 1em; padding-bottom: 1em;">INFORMACION DE LOS EMPLEADOS</h1>
+
+    <table class="table table-striped" >
+        <thead class="thead">
+            <tr>
+                <th scope="col">NOMBRE</th>
+                <th scope="col">CORREO</th>
+                <th scope="col">CONTACTO</th>
+                <th scope="col">ROL</th>
+                <th scope="col">SALARIO</th>
+                <th scope="col">ACCION</th>
+                <th scope="col">FOTO</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for emp in employees %}
+                <tr>
+                    <th scope="row">{{ emp.emp_name }}</th>
+                    <td>{{ emp.emp_email }}</td>
+                    <td>{{ emp.emp_contact }}</td>
+                    <td>{{ emp.emp_role }}</td>
+                    <td>{{ emp.emp_salary}}</td>
+                    <td>
+                        <a style="margin-right: 30px;" href="{% url 'edit-employee' emp.id %}">EDITAR</a>
+                        <a href="{% url 'delete-employee' emp.id %}">ELIMINAR</a>
+                    </td>
+                    <td>
+                     {%if emp.venue_image%}
+                     <img src="{{emp.venue_image.url}}" width="200">
+                     {%endif%}
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <div class="text-center">
+        <a href="{% url 'create-employee' %}"><button type="button" class="btn btn-primary">AÑADIR</button></a>
+    </div>
+{% endblock content %}
